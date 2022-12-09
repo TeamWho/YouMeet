@@ -1,27 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Button, Text, View } from 'react-native';
-import { NavigationContainer, StackActions } from '@react-navigation/native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from './components/home/home';
-import Chat from './components/chat/chat';
+import Chat from './src/modules/chat';
+import { Routes } from './src/types/navigation';
+import Home from './src/modules/home';
 
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name='Home' component={Home} />
-        <Stack.Screen name='Chat' component={Chat} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name={Routes.Home} component={Home} />
+                <Stack.Screen name={Routes.Chat} component={Chat} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 }
-
-
-{/* <View style={styles.container}>
-      <NavBar/>
-      <Content />
-      <StatusBar style="auto" />
-    </View> */}
