@@ -20,7 +20,7 @@ const tabNavigatorParams = {
 export default function App() {
     return (
         <NavigationContainer>
-            <Tab.Navigator screenOptions={tabNavigatorParams}>
+            <Tab.Navigator screenOptions={tabNavigatorParams} initialRouteName={Routes.Chat}>
                 <Tab.Screen
                     name={Routes.Home}
                     component={Home}
