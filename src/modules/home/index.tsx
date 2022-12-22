@@ -1,16 +1,20 @@
-import { useNavigation } from '@react-navigation/native';
-import { Button, Text, View } from 'react-native';
-import { Routes } from '../../types/navigation';
+import React from "react";
+import { Text, View, StyleSheet } from "react-native";
 
 const Home = () => {
-    const navigation = useNavigation<any>();
     return (
-        <View>
-            <Button title=" go to chat" onPress={() => 
-                navigation.navigate(Routes.Chat)}/>
+        <View style={styles.container}>
             <Text> my Home</Text>
         </View>
-    );
-};
+    )
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#53575a',
+        paddingTop: 50,
+    }
+})
 
 export default Home;
