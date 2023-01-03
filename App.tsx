@@ -1,80 +1,43 @@
-import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import Home from './src/modules//home/index';
-import Chat from './src/modules//chat/index';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet, View } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
-import { createStackNavigator } from '@react-navigation/stack';
-import Header from './src/components/header';
-import SearchScreen from './src/components/headerComponent/searchScreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useEffect, useMemo } from 'react';
+import Toast from 'react-native-toast-message';
 import SearchHeader from './src/components/headerComponent/searchHeader';
+import SearchScreen from './src/components/headerComponent/searchScreen';
+import Login from './src/modules/auth/login';
+import Tabs from './src/modules/navigation/tabs';
+import { useInitStore, useStore } from './src/modules/store';
+import { Routes } from './src/types/navigation';
 
-
-const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
-
-
-
-
-const HomeTabs = () => {
-  return(
-  <Tab.Navigator
-        screenOptions={() => ({
-          headerTintColor: '#fff',
-          headerStyle: {
-            backgroundColor: '#191a23',
-            shadowOpacity: 0,
-          },
-          tabBarShowLabel: false,
-          tabBarStyle: {
-            backgroundColor: '#191a23',
-            borderTopWidth: 0,
-          }
-        })}>
-        <Tab.Screen name='Home' component={Home} options={{
-          headerTitle: () => <Header/>,
-          tabBarIcon: ({ focused }) => (
-            <View>
-              <FontAwesome name='home' size={24} color={focused ? '#abacdc' : '#666C8C'}></FontAwesome>
-            </View>
-          )
-        }} />
-        <Tab.Screen name="Chat" component={Chat} options={{
-          headerShown: false, tabBarIcon: ({ focused }) => (
-            <View>
-              <FontAwesome name='commenting' size={24} color={focused ? '#abacdc' : '#666C8C'}></FontAwesome>
-            </View>
-          )
-        }} />
-      </Tab.Navigator>
-)}
-
-
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator 
-      // @ts-ignore because stack navigator doesn't understand "headerLeft" property even tho it works
-      screenOptions={() => ({
-        headerLeft: null,
-        headerStyle: {
-          backgroundColor: '#191a23',
-          shadowOpacity: 0,
-        },
-      })}>
-        <Stack.Screen name='Home' component={HomeTabs} options={{
-          headerShown: false,
-          }}/>
-        <Stack.Screen name='SearchScreen' component={SearchScreen} options={{
-          headerTitle: () => <SearchHeader/>,
-        }} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  )
+    const { init, isStoreInitiated } = useInitStore();
+    const { getStoreField } = useStore();
+
+    useEffect(() => {
+        init();
+    }, []);
+
+    const initialScreen = useMemo(() => {
+        if (!isStoreInitiated) return null;
+        return getStoreField('JWT_TOKEN') ? Routes.Home : Routes.Login;
+    }, [isStoreInitiated]);
+
+    if (!initialScreen) return null;
+
+    return (
+        <>
+            <NavigationContainer>
+                <Stack.Navigator initialRouteName={initialScreen}>
+                    <Stack.Screen name={Routes.Tabs} component={Tabs} />
+                    <Stack.Screen name={Routes.Login} component={Login} options={{ headerShown: false }} />
+                    <Stack.Screen name={Routes.Search} component={SearchScreen} options={{
+                        headerTitle: () => <SearchHeader />,
+                    }} />
+                </Stack.Navigator>
+            </NavigationContainer>
+            <Toast />
+        </>
+    );
 }
-
-const styles = StyleSheet.create({
-})
-
