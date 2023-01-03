@@ -19,8 +19,6 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     swiper: {
-        width: 350,
-        height: 90,
         marginTop: 20,
     },
     recomendation: {
