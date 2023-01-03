@@ -1,15 +1,21 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, StackActions } from '@react-navigation/native';
 import { Text, View, Button, StyleSheet } from 'react-native';
 import { Routes } from '../../types/navigation';
+import { useStore } from '../store';
 
 
 const Chat = () => {    
-    const navigation = useNavigation<any>();
+    const navigation = useNavigation();
+    const { clearStore } = useStore();
+
+    const logout = () => {
+        clearStore();
+        navigation.dispatch(StackActions.replace(Routes.Login));
+    };
     
     return (
         <View style={styles.container}>
-            <Button title=" back to Home" onPress={() => 
-                navigation.navigate(Routes.Home)}/>
+            <Button title="Logout" onPress={logout} />
             <Text>Chat</Text>
         </View>
     );
