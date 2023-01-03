@@ -56,7 +56,7 @@ export default TopSwiper;
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: '95%',
     height: 190,
   },
 
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
 
   slide: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColors: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 45,

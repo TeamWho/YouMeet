@@ -11,12 +11,12 @@ interface RecommendationModalProps {
 
 const groups = [
     {
-        text: 'LoL',
+        text: '#LoL',
         id: 'LoL',
         img: 'https://images.prismic.io/play-vs/6c423286e877921fb6659122b16e1845df833e1f_league-of-legends-hero-splash.jpg?auto=compress,format'
     },
     {
-        text: 'Dota 2',
+        text: '#Dota 2',
         id: 'Dota',
         img: 'https://cdn.oneesports.gg/cdn-data/2022/10/Dota2_Muerta_NewDotaHero_TI11.jpg'
     },
