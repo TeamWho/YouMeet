@@ -2,14 +2,12 @@ import {
     View,
     StyleSheet,
     TouchableOpacity,
-} from "react-native";
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
 import { FontAwesome } from '@expo/vector-icons';
-
-import TitleView from "./headerComponent/headerTitle";
-import RightView from "./headerComponent/headerFilter";
-import React from "react";
+import TitleView from './headerComponent/headerTitle';
+import RightView from './headerComponent/headerFilter';
+import { Routes } from '../types/navigation';
 
 
 const Header = () => {
@@ -19,12 +17,12 @@ const Header = () => {
     const LeftView = () => {
         return (
             <View>
-                <TouchableOpacity onPress={() => navigation.navigate('SearchScreen')}>
+                <TouchableOpacity onPress={() => navigation.navigate(Routes.Search)}>
                     <FontAwesome name="search" size={24} color='#fff' />
                 </TouchableOpacity>
             </View>
-        )
-    }
+        );
+    };
 
     return (
         <View style={styles.container}>
@@ -32,8 +30,8 @@ const Header = () => {
             <TitleView />
             <RightView />
         </View>
-    )
-}
+    );
+};
 
 
 const styles = StyleSheet.create({
@@ -44,7 +42,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-})
+});
 
 
 export default Header;

@@ -30,10 +30,11 @@ export default function App() {
         <>
             <NavigationContainer>
                 <Stack.Navigator initialRouteName={initialScreen}>
-                    <Stack.Screen name={Routes.Tabs} component={Tabs} />
+                    <Stack.Screen name={Routes.Tabs} component={Tabs} options={{ headerShown: false }} />
                     <Stack.Screen name={Routes.Login} component={Login} options={{ headerShown: false }} />
                     <Stack.Screen name={Routes.Search} component={SearchScreen} options={{
                         headerTitle: () => <SearchHeader />,
+                        headerTintColor: '#8287B5'
                     }} />
                 </Stack.Navigator>
             </NavigationContainer>

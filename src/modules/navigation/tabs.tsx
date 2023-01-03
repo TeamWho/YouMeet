@@ -1,6 +1,7 @@
 import { FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet, View } from 'react-native';
+import Header from '../../components/header';
 import { Routes } from '../../types/navigation';
 import Chat from '../chat';
 import Home from '../home';
@@ -12,7 +13,7 @@ const tabNavigatorParams = {
     tabBarStyle: {
         backgroundColor: '#272d2f',
         borderTopWidth: 0,
-    }
+    },
 };
 
 export default function Tabs() {
@@ -21,15 +22,22 @@ export default function Tabs() {
             <Tab.Screen
                 name={Routes.Home}
                 component={Home}
-                options={{ headerShown: false, tabBarIcon: ({ focused }) => (
-                    <View style={styles.iconWrapper}>
-                        <FontAwesome 
-                            name='home'
-                            size={24}
-                            color={focused ? '#fff' : '#585d60'}
-                        />
-                    </View>
-                ) 
+                options={{ 
+                    headerShown: true,
+                    headerTitle: () => <Header />,
+                    headerStyle: {
+                        backgroundColor: '#191a23',
+                        shadowOpacity: 0,
+                    },
+                    tabBarIcon: ({ focused }) => (
+                        <View style={styles.iconWrapper}>
+                            <FontAwesome 
+                                name='home'
+                                size={24}
+                                color={focused ? '#fff' : '#585d60'}
+                            />
+                        </View>
+                    ) 
                 }} 
             />
             <Tab.Screen 
