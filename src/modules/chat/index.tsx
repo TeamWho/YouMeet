@@ -18,15 +18,16 @@ const Chat = () => {
             <Button title="Logout" onPress={logout} />
             <Text>Chat</Text>
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#30665D',
+        paddingTop: 50,
     }
-});
+})
 
 
 

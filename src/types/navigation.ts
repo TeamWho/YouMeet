@@ -3,4 +3,5 @@ export enum Routes {
     Chat = 'CHAT',
     Tabs = 'TABS',
     Login = 'LOGIN',
+    Search = 'SearchScreen',
 }
