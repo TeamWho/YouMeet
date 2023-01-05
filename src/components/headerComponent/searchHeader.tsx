@@ -12,7 +12,6 @@ import { Routes } from '../../types/navigation';
 
 
 const SearchHeader = () => {
-
     return (
         <SearchBar style={styles.searchBar} placeholder="Search here" />
     );
@@ -27,5 +26,5 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         backgroundColor: '#8287B5',
         marginLeft: -20
-    }
+    },
 });
