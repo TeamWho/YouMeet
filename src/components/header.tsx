@@ -40,9 +40,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
-        width: 360,
+        width: '100%',
         justifyContent: 'space-between',
         alignItems: 'center',
+        paddingHorizontal: 5
     },
 })
 

@@ -21,7 +21,6 @@ const groups = [
 const TopSwiper = () => {
   return (
     <View style={styles.container}>
-
       <Swiper
         style={styles.wrapper}
         paginationStyle={{
@@ -30,21 +29,18 @@ const TopSwiper = () => {
         activeDotColor='#191a23'
         loop
         horizontal
+        autoplay={true}
+        autoplayTimeout={5}
       >
         {groups.map(group => (
           <View style={styles.slide}>
-            <Image 
-          style={{
-            width: '100%',
-            height: '100%',
-            borderRadius: 45,
-          }}
-          source={{
-            uri: group.img
-          }}/>
+            <Image
+              style={styles.img}
+              source={{
+                uri: group.img
+              }} />
           </View>
         ))}
-
       </Swiper>
     </View>
   )
@@ -94,5 +90,10 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 30,
     fontWeight: 'bold'
+  },
+  img: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 45,
   },
 })

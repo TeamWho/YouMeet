@@ -68,7 +68,7 @@ const Recommendation = () => {
                 {groups.map(group => (
                     <View style={styles.recItem}>
                         <Pressable style={styles.recBtn} onPress={() => openRecommendationModal(group.text)}>
-                        <Image
+                            <Image
                                 style={{ width: 170, height: 80, borderRadius: 30, }}
                                 source={{ uri: group.img }}
                             />
