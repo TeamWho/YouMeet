@@ -5,9 +5,9 @@ import {
 } from "react-native";
 import SearchBar from "react-native-dynamic-search-bar";
 import { useNavigation } from '@react-navigation/native';
-
 import { FontAwesome } from '@expo/vector-icons';
 import React from "react";
+import { Routes } from "../../types/navigation";
 
 
 const SearchHeader = () => {
@@ -16,7 +16,7 @@ const SearchHeader = () => {
 
     return (
         <View style={styles.searchHeader}>
-            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+            <TouchableOpacity onPress={() => navigation.navigate(Routes.Home)}>
                 <FontAwesome name="angle-left" size={32} color='#8287B5' />
             </TouchableOpacity>
             <View style={styles.search}>

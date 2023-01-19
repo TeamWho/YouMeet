@@ -23,9 +23,7 @@ const TopSwiper = () => {
     <View style={styles.container}>
       <Swiper
         style={styles.wrapper}
-        paginationStyle={{
-          marginBottom: -20,
-        }}
+        paginationStyle={styles.paginationStyle}
         activeDotColor='#191a23'
         loop
         horizontal
@@ -95,5 +93,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     borderRadius: 45,
+  },
+  paginationStyle: {
+    marginBottom: -20,
   },
 })

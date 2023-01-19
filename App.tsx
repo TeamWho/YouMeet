@@ -11,6 +11,7 @@ import SearchScreen from './src/components/headerComponent/searchScreen';
 import SearchHeader from './src/components/headerComponent/searchHeader';
 import GroupScreen from './src/modules/groups/groupScreen';
 import HeaderRight from './src/modules/groups/headerRight';
+import { Routes } from './src/types/navigation';
 
 
 const Tab = createBottomTabNavigator();
@@ -20,18 +21,12 @@ const HomeTabs = () => {
   return (
     <Tab.Navigator
       screenOptions={() => ({
-        headerTintColor: '#fff',
-        headerStyle: {
-          backgroundColor: '#191a23',
-          shadowOpacity: 0,
-        },
+        headerTintColorew: '#fff',
+        headerStyle: styles.headerStyle,
         tabBarShowLabel: false,
-        tabBarStyle: {
-          backgroundColor: '#191a23',
-          borderTopWidth: 0,
-        }
+        tabBarStyle: styles.tabBarStyle,
       })}>
-      <Tab.Screen name='Home' component={Home} options={{
+      <Tab.Screen name={Routes.Home} component={Home} options={{
         headerTitle: () => <Header />,
         tabBarIcon: ({ focused }) => (
           <View>
@@ -39,10 +34,10 @@ const HomeTabs = () => {
           </View>
         )
       }} />
-      <Tab.Screen name="Chat" component={Chat} options={{
+      <Tab.Screen name={Routes.Chat} component={Chat} options={{
         headerShown: false, tabBarIcon: ({ focused }) => (
           <View>
-            <Ionicons name='chatbubble-ellipses' size={24} color={focused ? '#abacdc' : '#666C8C'}></Ionicons>
+            <Ionicons name='chatbubble-ellipses' size={24} color={focused ? '#abacdc' : '#666C8C'} />
           </View>
         )
       }} />
@@ -57,19 +52,16 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={() => ({
-          headerStyle: {
-            backgroundColor: '#191a23',
-            shadowOpacity: 0,
-          },
+          headerStyle: styles.headerStyle,
         })}>
-        <Stack.Screen name='Home' component={HomeTabs} options={{
+        <Stack.Screen name={Routes.Home} component={HomeTabs} options={{
           headerShown: false,
         }} />
-        <Stack.Screen name='SearchScreen' component={SearchScreen} options={{
+        <Stack.Screen name={Routes.SearchScreen} component={SearchScreen} options={{
           headerTitle: () => <SearchHeader />,
           headerLeft: () => null,
         }} />
-        <Stack.Screen name='GroupScreen' component={GroupScreen} options={{
+        <Stack.Screen name={Routes.GroupScreen} component={GroupScreen} options={{
           headerTitle: 'GroupName',
           headerTintColor: '#fff',
           headerBackTitleVisible: false,
@@ -87,5 +79,13 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  headerStyle: {
+    backgroundColor: '#191a23',
+    shadowOpacity: 0,
+  },
+  tabBarStyle: {
+    backgroundColor: '#191a23',
+    borderTopWidth: 0,
+  },
 })
 

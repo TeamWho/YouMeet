@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from "@expo/vector-icons";
+import { Routes } from "../../../types/navigation";
 
 
 const groups = [
@@ -12,17 +13,17 @@ const groups = [
     },
     {
         text: 'G2',
-        id: 0,
+        id: 1,
         img: 'https://cdn.akamai.steamstatic.com/steam/apps/730/ss_d196d945c6170e9cadaf67a6dea675bd5fa7a046.1920x1080.jpg?t=1668125812'
     },
     {
         text: 'Fury',
-        id: 0,
+        id: 2,
         img: 'https://cdn.akamai.steamstatic.com/steam/apps/730/ss_d196d945c6170e9cadaf67a6dea675bd5fa7a046.1920x1080.jpg?t=1668125812'
     },
     {
         text: 'FaZe Clan',
-        id: 0,
+        id: 3,
         img: 'https://cdn.akamai.steamstatic.com/steam/apps/730/ss_d196d945c6170e9cadaf67a6dea675bd5fa7a046.1920x1080.jpg?t=1668125812'
     },
 ]
@@ -37,8 +38,8 @@ const Groups = () => {
         <View style={styles.container}>
             {groups.map(group => (
                 <View>
-                    <Pressable style={styles.group} onPress={() => navigation.navigate('GroupScreen')}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Pressable style={styles.group} onPress={() => navigation.navigate(Routes.GroupScreen)}>
+                        <View style={styles.groupContainer}>
                             <View>
                                 <Image
                                     style={styles.groupImg}
@@ -94,6 +95,10 @@ const styles = StyleSheet.create({
     },
     groupBtn: {
         top: -4,
+    },
+    groupContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
     },
 })
 

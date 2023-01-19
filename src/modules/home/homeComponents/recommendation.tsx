@@ -69,7 +69,7 @@ const Recommendation = () => {
                     <View style={styles.recItem}>
                         <Pressable style={styles.recBtn} onPress={() => openRecommendationModal(group.text)}>
                             <Image
-                                style={{ width: 170, height: 80, borderRadius: 30, }}
+                                style={styles.recImg}
                                 source={{ uri: group.img }}
                             />
                             <View style={styles.recName}><Text style={styles.recNameText}>{group.text}</Text></View>
@@ -135,5 +135,10 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 12,
         fontWeight: 'bold',
+    },
+    recImg: { 
+        width: 170, 
+        height: 80, 
+        borderRadius: 30, 
     },
 })

@@ -41,6 +41,7 @@ const GroupScreen = () => {
               itemId={member.id}
               handleDelete={(id: number) => handleDelete(id)}
             />}
+            // its's needed that when opening a new one action second was closing
           key={member.id}
           ref={ref => {
             if (ref && !rowRefs.get(member.id)) {

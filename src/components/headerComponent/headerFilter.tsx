@@ -22,7 +22,7 @@ const RightView = () => {
 
 
     return (
-        <View style={styles.rightView}>
+        <View>
             <Modal
                 animationType="slide"
                 transparent={true}
@@ -33,7 +33,6 @@ const RightView = () => {
             >
                 <View style={styles.modalFilter}>
                     <View style={styles.modalFilterStyle}>
-                        <>
                             <TextInput
                                 style={styles.input}
                                 onChangeText={onChangeText}
@@ -42,9 +41,7 @@ const RightView = () => {
                                 placeholderTextColor={'#8890bb'}
                             />
                             <Text style={styles.inputText}>Game</Text>
-                        </>
-                        <>
-                            <View style={{ flexDirection: 'row' }}>
+                            <View style={styles.ages}>
                                 <TextInput
                                     style={styles.inputNum}
                                     onChangeText={onAgeMin}
@@ -52,7 +49,7 @@ const RightView = () => {
                                     placeholder='min'
                                     placeholderTextColor={'#8890bb'}
                                 />
-                                <Text style={{ color: '#8890bb', fontSize: 46, marginTop: 10 }}>-</Text>
+                                <Text style={styles.agesLine}>-</Text>
                                 <TextInput
                                     style={styles.inputNum}
                                     onChangeText={onAgeMax}
@@ -62,8 +59,6 @@ const RightView = () => {
                                 />
                             </View>
                             <Text style={styles.inputText}>Age</Text>
-                        </>
-                        <>
                             <TextInput
                                 style={styles.input}
                                 onChangeText={onChangeRank}
@@ -72,7 +67,6 @@ const RightView = () => {
                                 placeholderTextColor={'#8890bb'}
                             />
                             <Text style={styles.inputText}>Rank</Text>
-                        </>
                         <View style={styles.filterFooter}>
                             <Pressable style={styles.filterBtn}
                                 onPress={() => setModalVisible(!modalVisible)}
@@ -95,8 +89,6 @@ export default RightView;
 
 
 const styles = StyleSheet.create({
-    rightView: {
-    },
     modalFilter: {
         flex: 1,
         justifyContent: 'center',
@@ -152,5 +144,13 @@ const styles = StyleSheet.create({
         bottom: 20,
         position: 'absolute',
         right: 0,
+    },
+    ages: {
+        flexDirection: 'row',
+    },
+    agesLine: { 
+        color: '#8890bb', 
+        fontSize: 46, 
+        marginTop: 10 
     },
 })
