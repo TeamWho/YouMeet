@@ -12,11 +12,10 @@ import { Routes } from './src/types/navigation';
 import Home from './src/modules//home/index';
 import Chat from './src/modules//chat/index';
 import { Ionicons } from '@expo/vector-icons';
-import { createStackNavigator } from '@react-navigation/stack';
 import Header from './src/components/header';
 import GroupScreen from './src/modules/groups/groupScreen';
-import HeaderRight from './src/modules/groups/headerRight';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import GroupHeader from './src/modules/groups/groupHeader';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -77,7 +76,7 @@ export default function App() {
             headerShown: false,
           }} />
           <Stack.Screen name={Routes.Login} component={Login} options={{ headerShown: false }} />
-          <Stack.Screen name={Routes.Search} component={SearchScreen} options={{
+          <Stack.Screen name={Routes.SearchScreen} component={SearchScreen} options={{
             headerTitle: () => <SearchHeader />,
             headerTintColor: '#8287B5',
             headerStyle: {
@@ -85,16 +84,9 @@ export default function App() {
             },
           }} />
           <Stack.Screen name={Routes.GroupScreen} component={GroupScreen} options={{
-            headerTitle: 'GroupName',
+            headerTitle: () => <GroupHeader />,
             headerTintColor: '#fff',
-            headerBackTitleVisible: false,
-            headerRight: () => <HeaderRight />,
-            // headerRightContainerStyle: {
-            //   paddingRight: 10,
-            // },
-            // headerLeftContainerStyle: {
-            //   paddingLeft: 8,
-            // },
+            headerBackVisible: false,
           }} />
         </Stack.Navigator>
       </NavigationContainer>

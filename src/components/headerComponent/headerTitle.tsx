@@ -2,8 +2,6 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 
-
-
 const TitleView = (props: any) => {
     return (
         <View>
