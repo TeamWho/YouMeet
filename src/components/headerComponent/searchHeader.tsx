@@ -2,8 +2,8 @@ import {
     TouchableOpacity,
     View,
     StyleSheet,
-} from "react-native";
-import SearchBar from "react-native-dynamic-search-bar";
+} from 'react-native';
+import SearchBar from 'react-native-dynamic-search-bar';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 import React from "react";
@@ -11,9 +11,6 @@ import { Routes } from "../../types/navigation";
 
 
 const SearchHeader = () => {
-
-    const navigation = useNavigation<any>();
-
     return (
         <View style={styles.searchHeader}>
             <TouchableOpacity onPress={() => navigation.navigate(Routes.Home)}>
@@ -32,19 +29,10 @@ export default SearchHeader;
 
 
 const styles = StyleSheet.create({
-    search: {
-        width: 360,
-        height: 30,
-    },
     searchBar: {
-        flex: 1,
+        height: 30,
         borderRadius: 20,
         backgroundColor: '#8287B5',
+        marginLeft: -20
     },
-    searchHeader: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    }
-})
+});

@@ -1,14 +1,14 @@
-import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import React from 'react';
+import { View, StyleSheet, Text } from 'react-native';
 
 
 const SearchScreen = () => {
     return (
-                <View style={styles.searchScreenContainer}>
-                    <Text>Hello</Text>
-                </View>
-            )
-}
+        <View style={styles.searchScreenContainer}>
+            <Text>Hello</Text>
+        </View>
+    );
+};
 
 export default SearchScreen;
 
@@ -20,4 +20,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    })
+});

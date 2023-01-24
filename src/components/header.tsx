@@ -15,8 +15,8 @@ const Header = () => {
             <TitleView />
             <RightView />
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 5
     },
-})
+});
 
 
 export default Header;

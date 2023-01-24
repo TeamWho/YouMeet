@@ -1,21 +1,25 @@
-import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useEffect, useMemo } from 'react';
+import { View, StyleSheet } from 'react-native';
+import Toast from 'react-native-toast-message';
+import SearchHeader from './src/components/headerComponent/searchHeader';
+import SearchScreen from './src/components/headerComponent/searchScreen';
+import Login from './src/modules/auth/login';
+import Tabs from './src/modules/navigation/tabs';
+import { useInitStore, useStore } from './src/modules/store';
+import { Routes } from './src/types/navigation';
 import Home from './src/modules//home/index';
 import Chat from './src/modules//chat/index';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack';
 import Header from './src/components/header';
-import SearchScreen from './src/components/headerComponent/searchScreen';
-import SearchHeader from './src/components/headerComponent/searchHeader';
 import GroupScreen from './src/modules/groups/groupScreen';
 import HeaderRight from './src/modules/groups/headerRight';
-import { Routes } from './src/types/navigation';
-
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const HomeTabs = () => {
   return (
@@ -45,37 +49,58 @@ const HomeTabs = () => {
   )
 }
 
-
-
 export default function App() {
+  const { init, isStoreInitiated } = useInitStore();
+  const { getStoreField } = useStore();
+
+  useEffect(() => {
+    init();
+  }, []);
+
+  const initialScreen = useMemo(() => {
+    return Routes.Home;
+    if (!isStoreInitiated) return null;
+    return getStoreField('JWT_TOKEN') ? Routes.Home : Routes.Login;
+  }, [isStoreInitiated]);
+
+  if (!initialScreen) return null;
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={() => ({
-          headerStyle: styles.headerStyle,
-        })}>
-        <Stack.Screen name={Routes.Home} component={HomeTabs} options={{
-          headerShown: false,
-        }} />
-        <Stack.Screen name={Routes.SearchScreen} component={SearchScreen} options={{
-          headerTitle: () => <SearchHeader />,
-          headerLeft: () => null,
-        }} />
-        <Stack.Screen name={Routes.GroupScreen} component={GroupScreen} options={{
-          headerTitle: 'GroupName',
-          headerTintColor: '#fff',
-          headerBackTitleVisible: false,
-          headerRight: () => <HeaderRight />,
-          headerRightContainerStyle: {
-            paddingRight: 10,
-          },
-          headerLeftContainerStyle: {
-            paddingLeft: 8,
-          },
-        }} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  )
+    <>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName={initialScreen}
+          screenOptions={() => ({
+            headerStyle: styles.headerStyle,
+          })}>
+          <Stack.Screen name={Routes.Tabs} component={Tabs} options={{ headerShown: false }} />
+          <Stack.Screen name={Routes.Home} component={HomeTabs} options={{
+            headerShown: false,
+          }} />
+          <Stack.Screen name={Routes.Login} component={Login} options={{ headerShown: false }} />
+          <Stack.Screen name={Routes.Search} component={SearchScreen} options={{
+            headerTitle: () => <SearchHeader />,
+            headerTintColor: '#8287B5',
+            headerStyle: {
+              backgroundColor: '#191a23'
+            },
+          }} />
+          <Stack.Screen name={Routes.GroupScreen} component={GroupScreen} options={{
+            headerTitle: 'GroupName',
+            headerTintColor: '#fff',
+            headerBackTitleVisible: false,
+            headerRight: () => <HeaderRight />,
+            // headerRightContainerStyle: {
+            //   paddingRight: 10,
+            // },
+            // headerLeftContainerStyle: {
+            //   paddingLeft: 8,
+            // },
+          }} />
+        </Stack.Navigator>
+      </NavigationContainer>
+      <Toast />
+    </>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -88,4 +113,3 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
   },
 })
-
