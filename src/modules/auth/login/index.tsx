@@ -1,12 +1,13 @@
 import { useRef, useState } from 'react';
 import { Button, Input } from '@rneui/base';
 import Toast from 'react-native-toast-message';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StackActions, useNavigation } from '@react-navigation/native';
 import request from '../../request';
 import { useStore } from '../../store';
 import { Routes } from '../../../types/navigation';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const Login = () => {    
@@ -40,34 +41,41 @@ const Login = () => {
     
     return (
         <View style={styles.container}>
+            <View>
+                <Text style={styles.welcomeText}> Welcome!</Text>
+            </View>
             <Input
+                style={styles.text}
                 ref={emailInputRef}
                 autoCapitalize="none"
                 placeholder='Email'
+                placeholderTextColor={'#5ad3b9'}
                 value={email}
                 onChangeText={(value) => setEmail(value)}
-                leftIcon={{ type: 'font-awesome', name: 'envelope', size: 18 }}
+                leftIcon={{ type: 'font-awesome', name: 'envelope', size: 18, color: '#5ad3b9' }}
             />
-            <Input
+            <Input                
+                style={styles.text}
                 ref={passwordInputRef}
                 autoCapitalize='none'
                 secureTextEntry={shouldHidePassword}
                 placeholder='Password'
+                placeholderTextColor={'#5ad3b9'}
                 value={password}
                 onChangeText={(value) => setPassword(value)}
-                leftIcon={{ type: 'font-awesome', name: 'lock', size: 24 }}
-                rightIcon={{ type: 'font-awesome', name: 'eye', size: 20, onPress: () => setShouldHidePassword(!shouldHidePassword) }}
+                leftIcon={{ type: 'font-awesome', name: 'lock', size: 24, color: '#5ad3b9' }}
+                rightIcon={{ type: 'font-awesome', name: 'eye', size: 20, color: '#5ad3b9', onPress: () => setShouldHidePassword(!shouldHidePassword) }}
             />
 
             <Button
                 containerStyle={styles.button}
                 ViewComponent={LinearGradient}
                 linearGradientProps={{
-                    colors: ['#FF9800', '#F44336'],
+                    colors: ['#5ad3b9', '#488A79'],
                     start: { x: 0, y: 0.1 },
                     end: { x: 1, y: 0.7 },
                 }}
-                size="md"
+                size="lg"
                 onPress={signIn}
             >
                 Sign in
@@ -82,10 +90,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center', 
         paddingHorizontal: 20,
+        backgroundColor: '#26252a',
     },
     button: {
-        borderRadius: 10
-    }
+        borderRadius: 10,
+    },
+    text: {
+        color: '#fff',
+        marginLeft: 10,
+    },
+    welcomeText: {
+        color: '#fff',
+        fontWeight: '900',
+        fontSize: 36,
+        position: 'absolute',
+        left: '-26%',
+        bottom: 120,
+    },
 });
 
 
