@@ -11,11 +11,15 @@ import { useInitStore, useStore } from './src/modules/store';
 import { Routes } from './src/types/navigation';
 import Home from './src/modules//home/index';
 import Chat from './src/modules//chat/index';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, FontAwesome5  } from '@expo/vector-icons';
 import Header from './src/components/header';
 import GroupScreen from './src/modules/groups/groupScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import GroupHeader from './src/modules/groups/groupHeader';
+import Profile from './src/modules/profile/index';
+import ProfileHeader from './src/modules/profile/profileComponents/header';
+import MyProfile from './src/modules/myprofile';
+import Settings from './src/modules/settings';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -44,6 +48,14 @@ const HomeTabs = () => {
           </View>
         )
       }} />
+      <Tab.Screen name={Routes.MyProfile} component={MyProfile} options={{
+        headerShown: false,
+        tabBarIcon: ({focused}) => (
+          <View>
+          <FontAwesome5 name='user-alt' size={20} color={focused ? '#abacdc' : '#666C8C'} />
+        </View>
+        )
+      }}/>
     </Tab.Navigator>
   )
 }
@@ -88,6 +100,11 @@ export default function App() {
             headerTintColor: '#fff',
             headerBackVisible: false,
           }} />
+          <Stack.Screen name={Routes.Profile} component={Profile} options={{
+            headerTitle: () => <ProfileHeader/>,
+            headerBackVisible: false,
+          }}/>
+          <Stack.Screen name={Routes.Settings} component={Settings} />
         </Stack.Navigator>
       </NavigationContainer>
       <Toast />

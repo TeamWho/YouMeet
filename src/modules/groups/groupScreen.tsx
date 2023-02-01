@@ -4,7 +4,8 @@ import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import RightActions from "./rightAction";
-
+import { useNavigation } from "@react-navigation/native";
+import { Routes } from "../../types/navigation";
 
 let team = [
   { name: 'S1mple', id: 0, rank: 'gold nova', img: 'https://www.bestgamingsettings.com/wp-content/uploads/2019/12/S1mple.jpg' },
@@ -30,6 +31,8 @@ const GroupScreen = () => {
     )
   }
 
+  const navigation = useNavigation<any>();
+
   return (
     <View style={styles.groupScreenContainer}>
       <StatusBar style="light" />
@@ -54,7 +57,7 @@ const GroupScreen = () => {
             });
           }}
         >
-          <Pressable style={styles.team}>
+          <Pressable style={styles.team} onPress={() => navigation.navigate(Routes.Profile)} >
             <View style={styles.teamContainerOne}>
               <Image
                 style={styles.temmateAva}

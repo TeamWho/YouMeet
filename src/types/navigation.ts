@@ -5,5 +5,7 @@ export enum Routes {
     SearchScreen = 'SEARCHSCREEN',
     Tabs = 'TABS',
     Login = 'LOGIN',
-    Search = 'SearchScreen',
+    Profile = 'PROFILE',
+    MyProfile = 'MYPROFILE',
+    Settings = 'SETTINGS',
 }
