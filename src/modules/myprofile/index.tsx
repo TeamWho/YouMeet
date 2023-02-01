@@ -5,15 +5,12 @@ import { Routes } from "../../types/navigation";
 import { useNavigation, StackActions } from '@react-navigation/native';
 import { useStore } from '../store';
 
-
 const store = [
     {
         img: 'https://static.wikia.nocookie.net/naruto/images/b/bb/Itachi.png/revision/latest?cb=20210225204731&path-prefix=ru'
     }
 ]
-
 const MyProfile = () => {
-
     const navigation = useNavigation<any>();
     const { clearStore } = useStore();
 
@@ -37,7 +34,7 @@ const MyProfile = () => {
 
     return (
         <View style={styles.profileContainer}>
-            <View style={styles.ava}>
+            <View style={styles.avatar}>
                 {store.map(store => (
                     <View>
                         <Image
@@ -75,7 +72,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#26252a',
         paddingTop: '20%',
     },
-    ava: {
+    avatar: {
         alignItems: 'center',
     },
     avaImg: {

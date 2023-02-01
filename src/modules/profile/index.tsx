@@ -1,48 +1,31 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-
-
-const info = [
-    {
-        nick: 'Fembulvetr',
-        ava: 'https://static.wikia.nocookie.net/naruto/images/b/bb/Itachi.png/revision/latest?cb=20210225204731&path-prefix=ru',
-    }
-]
-
-const rating = [
-    {
-        followers: 1654, rat: 6
-    }
-]
-
-
+import { info, rating } from "./profileComponents/profileStore";
 
 const Profile = () => {
     return (
         <View style={styles.profileContainer}>
             <View style={styles.profileBlock1}>
-                {info.map(info => (
                     <View style={styles.userinfo}>
                         <View style={styles.profileAva}>
                             <Image
                                 style={styles.avaImg}
                                 source={{ uri: info.ava }}
+                                key={info.key}
                             />
                         </View>
                         <View>
-                            <Text style={styles.nickname}> {info.nick} </Text>
+                            <Text style={styles.nickname} key={info.key}> {info.nick} </Text>
                         </View>
                     </View>
-                ))}
             </View>
             <View style={styles.profileBlock2}>
-                {rating.map(rating => (
                     <View style={styles.rating}>
                         <View style={styles.profileInfo}>
                             <Text style={styles.infoText}>
                                 Followers :
                             </Text>
-                            <Text style={styles.infoText2}>
+                            <Text style={styles.infoText2} key={info.key}>
                                 {rating.followers}
                             </Text>
                         </View>
@@ -50,12 +33,11 @@ const Profile = () => {
                             <Text style={styles.infoText}>
                                 Raiting :
                             </Text>
-                            <Text style={styles.infoText2}>
+                            <Text style={styles.infoText2} key={info.key}>
                                 {rating.rat}/10
                             </Text>
                         </View>
                     </View>
-                ))}
             </View>
             <View style={styles.profileBlock3}>
                 <TouchableOpacity style={styles.profileBtn}>

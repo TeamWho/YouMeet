@@ -1,15 +1,13 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import HeaderLeft from "./headerLeft";
-import HeaderRight from "./headerRight";
-import HeaderTitle from "./headerTitle";
-
-
 
 const ProfileHeader = () => {
-    return(
+    return (
         <View style={styles.container}>
-            <View><HeaderLeft/></View>
-            <View style={styles.headerTitle}><HeaderTitle/></View>
+            <View><HeaderLeft /></View>
+            <View style={styles.headerTitle}>
+                <Text style={styles.titleText}>UserName</Text>
+            </View>
         </View>
     )
 }
@@ -24,6 +22,10 @@ const styles = StyleSheet.create({
     headerTitle: {
         marginLeft: '26%'
     },
+    titleText: {
+        color: '#fff',
+        fontSize: 18,
+    }
 })
 
 export default ProfileHeader;
