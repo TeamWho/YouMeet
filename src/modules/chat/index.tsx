@@ -5,29 +5,29 @@ import { useStore } from '../store';
 
 
 const Chat = () => {    
-    const navigation = useNavigation();
-    const { clearStore } = useStore();
+  const navigation = useNavigation();
+  const { clearStore } = useStore();
 
-    const logout = () => {
-        clearStore();
-        navigation.dispatch(StackActions.replace(Routes.Login));
-    };
+  const logout = () => {
+    clearStore();
+    navigation.dispatch(StackActions.replace(Routes.Login));
+  };
     
-    return (
-        <View style={styles.container}>
-            <Button title="Logout" onPress={logout} />
-            <Text>Chat</Text>
-        </View>
-    )
-}
+  return (
+    <View style={styles.container}>
+      <Button title="Logout" onPress={logout} />
+      <Text>Chat</Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#30665D',
-        paddingTop: 50,
-    }
-})
+  container: {
+    flex: 1,
+    backgroundColor: '#30665D',
+    paddingTop: 50,
+  }
+});
 
 
 

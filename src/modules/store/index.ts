@@ -4,59 +4,58 @@ import { state } from '../state';
 import { useState } from 'react';
 
 export const useInitStore = () => {
-    const [isStoreInitiated, setIsStoreInitiated] = useState(false);
-    const [_, setStore] = useAtom(state.storeAtom);
+  const [isStoreInitiated, setIsStoreInitiated] = useState(false);
+  const [_, setStore] = useAtom(state.storeAtom);
 
-    const initStore = async () => {
-        try {
-            const keys = await AsyncStorage.getAllKeys();
-            const result = await AsyncStorage.multiGet(keys);
-            if (!keys || !result || keys?.length === 0 || result?.length === 0) return {};
-            const finalStore = result.reduce((acc, [key, value]) => ({
-                ...(acc || {}),
-                [key]: value
-            }), {});
+  const initStore = async () => {
+    try {
+      const keys = await AsyncStorage.getAllKeys();
+      const result = await AsyncStorage.multiGet(keys);
+      if (!keys || !result || keys?.length === 0 || result?.length === 0) return {};
+      const finalStore = result.reduce((acc, [key, value]) => ({
+        ...(acc || {}),
+        [key]: value
+      }), {});
 
 
-            setStore(finalStore);
-        } catch(err) {
-            console.log(err);
-        } finally {
-            setIsStoreInitiated(true);
-        }
-    };
+      setStore(finalStore);
+    } catch(err) {
+      console.log(err);
+    } finally {
+      setIsStoreInitiated(true);
+    }
+  };
 
-    return {
-        init: initStore,
-        isStoreInitiated,
-    };
+  return {
+    init: initStore,
+    isStoreInitiated,
+  };
 };
 
 export const useStore = () => {
-    const [store, setStore] = useAtom(state.storeAtom);
+  const [store, setStore] = useAtom(state.storeAtom);
 
-    const getField = (key: string) => store?.[key];
+  const getField = (key: string) => store?.[key];
+  const getStore = () => store;
 
-    const getStore = () => store;
+  const updateStoreField = async (key: string, value: any) => {
+    await AsyncStorage.setItem(key, value);
 
-    const updateStoreField = async (key: string, value: any) => {
-        await AsyncStorage.setItem(key, value);
+    setStore({
+      ...(store || {}),
+      [key]: value
+    });
+  };
 
-        setStore({
-            ...(store || {}),
-            [key]: value
-        });
-    };
+  const clearStore = () => {
+    setStore(null);
+    AsyncStorage.clear();
+  };
 
-    const clearStore = () => {
-        setStore(null);
-        AsyncStorage.clear();
-    };
-
-    return {
-        getStoreField: getField,
-        getStore,
-        setStoreField: updateStoreField,
-        clearStore,
-    };
+  return {
+    getStoreField: getField,
+    getStore,
+    setStoreField: updateStoreField,
+    clearStore,
+  };
 };

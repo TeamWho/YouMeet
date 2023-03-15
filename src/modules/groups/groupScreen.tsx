@@ -1,13 +1,13 @@
-import { View, Text, StyleSheet, Image, Pressable } from "react-native";
-import React, { useState } from "react";
-import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
-import { StatusBar } from "expo-status-bar";
+import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
+import { useState } from 'react';
+import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
+import { StatusBar } from 'expo-status-bar';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import RightActions from "./rightAction";
-import { useNavigation } from "@react-navigation/native";
-import { Routes } from "../../types/navigation";
+import RightActions from './rightAction';
+import { useNavigation } from '@react-navigation/native';
+import { Routes } from '../../types/navigation';
 
-let team = [
+const team = [
   { name: 'S1mple', id: 0, rank: 'gold nova', img: 'https://www.bestgamingsettings.com/wp-content/uploads/2019/12/S1mple.jpg' },
   { name: 'Electronic', id: 1, rank: 'Global', img: 'https://virtus-img.cdnvideo.ru/images/details-photo/plain/0a/0a80266e2502a836fbb68ba093ac28e2.png@jpg' },
   { name: 'Flamie', id: 2, rank: 'Silver', img: 'https://www.heavybullets.com/wp-content/uploads/2020/01/flemie.jpeg' },
@@ -17,10 +17,10 @@ let team = [
 
 const GroupScreen = () => {
   const [members, setMembers] = useState(team);
-  let rowRefs = new Map();
+  const rowRefs = new Map();
 
   const handleDelete = (itemId: number) => {
-    setMembers(members.filter(it => it.id !== itemId))
+    setMembers(members.filter(it => it.id !== itemId));
   };
 
   const renderLeaderFlag = () => {
@@ -28,9 +28,10 @@ const GroupScreen = () => {
       <View>
         <FontAwesome5 name="crown" size={16} color={'#E8B32E'} />
       </View>
-    )
-  }
+    );
+  };
 
+  // TODO: fix navigation types
   const navigation = useNavigation<any>();
 
   return (
@@ -44,7 +45,7 @@ const GroupScreen = () => {
               itemId={member.id}
               handleDelete={(id: number) => handleDelete(id)}
             />}
-            // its's needed that when opening a new one action second was closing
+          // its's needed that when opening a new one action second was closing
           key={member.id}
           ref={ref => {
             if (ref && !rowRefs.get(member.id)) {
@@ -52,6 +53,7 @@ const GroupScreen = () => {
             }
           }}
           onSwipeableWillOpen={() => {
+            // @ts-ignore
             [...rowRefs.entries()].forEach(([key, ref]) => {
               if (key !== member.id && ref) ref.close();
             });
@@ -81,8 +83,8 @@ const GroupScreen = () => {
         <FontAwesome name="comments" size={64} color='#abacdc' />
       </Pressable>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   groupScreenContainer: {
@@ -135,6 +137,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: '40%',
   },
-})
+});
 
 export default GroupScreen;

@@ -1,48 +1,36 @@
-import React from 'react'
-import { View, StyleSheet, Image } from 'react-native'
+import React from 'react';
+import { View, StyleSheet, Image } from 'react-native';
 import Swiper from 'react-native-swiper';
 
 
 const groups = [
-  {
-    img: 'https://cdn.dribbble.com/users/2305617/screenshots/16195444/media/2d1fd42bdd74c88e9923b46f76449878.png?compress=1&resize=400x300'
-  },
-  {
-    img: 'https://static1.cbrimages.com/wordpress/wp-content/uploads/2021/03/Perverted-SToic-Jiraiya.jpg'
-  },
-  {
-    img: 'https://static1.cbrimages.com/wordpress/wp-content/uploads/2022/09/Minato-Namikaze-Naruto-Shippuden.jpg'
-  },
-  {
-    img: 'https://static1.cbrimages.com/wordpress/wp-content/uploads/2020/10/Tsunade-Naruto.jpg'
-  },
-]
+  { id: '1', img: 'https://cdn.dribbble.com/users/2305617/screenshots/16195444/media/2d1fd42bdd74c88e9923b46f76449878.png?compress=1&resize=400x300' },
+  { id: '2', img: 'https://static1.cbrimages.com/wordpress/wp-content/uploads/2021/03/Perverted-SToic-Jiraiya.jpg' },
+  { id: '3', img: 'https://static1.cbrimages.com/wordpress/wp-content/uploads/2022/09/Minato-Namikaze-Naruto-Shippuden.jpg' },
+  { id: '4', img: 'https://static1.cbrimages.com/wordpress/wp-content/uploads/2020/10/Tsunade-Naruto.jpg' },
+];
 
 const TopSwiper = () => {
   return (
     <View style={styles.container}>
       <Swiper
-        style={styles.wrapper}
-        paginationStyle={styles.paginationStyle}
-        activeDotColor='#191a23'
         loop
         horizontal
         autoplay={true}
         autoplayTimeout={5}
+        style={styles.wrapper}
+        activeDotColor='#191a23'
+        paginationStyle={styles.paginationStyle}
       >
         {groups.map(group => (
-          <View style={styles.slide}>
-            <Image
-              style={styles.img}
-              source={{
-                uri: group.img
-              }} />
+          <View key={group.img} style={styles.slide}>
+            <Image style={styles.img} source={{ uri: group.img }} />
           </View>
         ))}
       </Swiper>
     </View>
-  )
-}
+  );
+};
 
 
 export default TopSwiper;
@@ -97,4 +85,4 @@ const styles = StyleSheet.create({
   paginationStyle: {
     marginBottom: -20,
   },
-})
+});

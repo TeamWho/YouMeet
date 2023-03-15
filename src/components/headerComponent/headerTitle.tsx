@@ -1,23 +1,25 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from 'react-native';
 
-
-const TitleView = (props: any) => {
-    return (
-        <View>
-            <Text style={styles.title}>
-                UserName
-                {props.name}
-            </Text>
-        </View>
-    )
+interface Props {
+    text?: string
 }
+
+const TitleView = ({ text = '' }: Props) => {
+  return (
+    <View>
+      <Text style={styles.title}>
+                UserName
+        {text}
+      </Text>
+    </View>
+  );
+};
 
 export default TitleView;
 
 const styles = StyleSheet.create({
-    title: {
-        fontSize: 18,
-        color: '#fff',
-    },
-})
+  title: {
+    fontSize: 18,
+    color: '#fff',
+  },
+});
